@@ -5,10 +5,10 @@ export default avro.Type.forSchema({
   fields: [
     {
       name: 'category',
-      type: { type: 'enum', symbols: ['DOG', 'CAT'] }
+      type: { type: 'enum', symbols: ['userLogged', 'userLoggedOut'] }
     },
     {
-      name: 'noise',
+      name: 'action',
       type: 'string',
     }
   ]

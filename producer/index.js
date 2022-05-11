@@ -13,10 +13,10 @@ stream.on('error', (err) => {
 });
 
 function queueRandomMessage() {
-  const category = getRandomAnimal();
-  const noise = getRandomNoise(category);
-  const event = { category, noise };
-  const success = stream.write(eventType.toBuffer(event));     
+  const category = getRandomUser();
+  const action = getRandomAction(category);
+  const event = { category, action };
+  const success = stream.write(eventType.toBuffer(event));
   if (success) {
     console.log(`message queued (${JSON.stringify(event)})`);
   } else {
@@ -24,20 +24,20 @@ function queueRandomMessage() {
   }
 }
 
-function getRandomAnimal() {
-  const categories = ['CAT', 'DOG'];
+function getRandomUser() {
+  const categories = ['userLogged', 'userLoggedOut'];
   return categories[Math.floor(Math.random() * categories.length)];
 }
 
-function getRandomNoise(animal) {
-  if (animal === 'CAT') {
-    const noises = ['meow', 'purr'];
-    return noises[Math.floor(Math.random() * noises.length)];
-  } else if (animal === 'DOG') {
-    const noises = ['bark', 'woof'];
-    return noises[Math.floor(Math.random() * noises.length)];
+function getRandomAction(user) {
+  if (user === 'userLogged') {
+    const actions = ['User Has Logged In', 'A New User Has Logged In'];
+    return actions[Math.floor(Math.random() * actions.length)];
+  } else if (user === 'userLoggedOut') {
+    const actions = ['User Has Logged Out', 'A New User Has Logged Out'];
+    return actions[Math.floor(Math.random() * actions.length)];
   } else {
-    return 'silence..';
+    return 'no actions';
   }
 }
 

@@ -12,6 +12,6 @@ consumer.on('ready', () => {
   console.log('consumer ready..')
   consumer.subscribe(['test']);
   consumer.consume();
-}).on('data', function(data) {
+}).on('data', function (data) {
   console.log(`received message: ${eventType.fromBuffer(data.value)}`);
 });
